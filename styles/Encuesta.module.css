@@ -1,0 +1,148 @@
+.EncuestaBody {
+    display: flex;
+    justify-content: center;
+}
+.navBackground {
+    width: 100vw;
+    height: 90px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    background-color: var(--darkColor);
+}
+.QuestionCard {
+    position: absolute;
+    top: 24vh;
+    margin: 0 auto; 
+    text-align: center;
+    width: 800px;
+    height: 400px;
+    background-color: var(--whiteColor);
+    padding: 20px 40px 100px 40px;
+    box-shadow: 0 0 110px 5px #000;
+}
+.AnswersCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 100px 0;
+}
+.AnswersCard * {
+    min-width: 50px;
+}
+.smallInputQuestion {
+    width: 400px;
+    height: 50px;
+    resize: none;
+    position: relative;
+    top: 100px;
+    border: none;
+    background-color: var(--darkColor);
+    color: var(--whiteColor);
+    padding: 20px;
+    box-shadow: 0 0 20px 10px #000 inset;
+}
+.bigInputQuestion {
+    width: 600px;
+    height: 200px;
+    margin: 20px auto;
+    font-size: 19px;
+    resize: none;
+    border: none;
+    background-color: var(--darkColor);
+    color: var(--whiteColor);
+    padding: 20px;
+    box-shadow: 0 0 20px 10px #000 inset;
+
+}
+.cardRadioLabel {
+    color: var(--whiteColor);
+    background-color: var(--darkColor);
+    margin: 20px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    justify-content: center;
+    transition: 0.2s;
+    box-shadow: 0 0 13px 5px #000 inset;
+    font-size: 18px;
+    appearance: none;
+    border: none;
+}
+.cardRadioLabel:hover {
+    border: none;
+}
+.cardInputRadio {
+    position: absolute;
+    top: -2000px; 
+}
+.cardInputRadio:checked + .cardRadioLabel, .cardRadioLabel:hover {
+    background-color: var(--goldColor);
+    transform: scale(1.07);
+    cursor: pointer;
+}
+.colorAnsBrown, .colorAnsTurquoise,.colorAnsDark, .colorAnsYellow {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    appearance: none;
+    box-shadow: 0 0 18px 5px #000 inset;
+    transition: 0.2s;
+}
+.colorAnsBrown:hover, .colorAnsTurquoise:hover, .colorAnsDark:hover, .colorAnsYellow:hover {
+    transform: scale(1.2);
+}
+.colorAnsBrown:checked, .colorAnsTurquoise:checked, .colorAnsDark:checked, .colorAnsYellow:checked {
+    transform: scale(1.2);
+}
+.colorAnsBrown {
+    background-color: var(--brownColor);
+}
+.colorAnsTurquoise {
+    background-color: var(--turquoiseColor);
+}
+.colorAnsDark {
+    background-color: var(--darkColor);
+}
+.colorAnsYellow  {
+    background-color: var(--goldColor);
+}
+.svgLogo {
+    width: 200px ;
+    padding: 20px;
+    transition: 0.2s;
+}
+.svgLogo:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 28px 5px #000;
+    cursor: pointer;
+}
+.svgRadio {
+    position: absolute;
+    top: -2000px;
+}
+.svgRadio:checked + .radiolabelsvg > .svgLogo {
+    transform: scale(1.07);
+    box-shadow: 0 0 28px 5px #000;
+}
+.ButtonCard {
+    position: absolute;
+    top: 490px;
+    background-color: var(--turquoiseColor);
+    color: var(--whiteColor);
+    border: none;
+    padding: 15px;
+    font-size: 17px;
+    box-shadow: 0 0 40px 1px #000;
+    cursor: pointer;
+}
+.ButtonCard:first-of-type {
+    left: 150px;
+}
+.ButtonCard:last-of-type {
+    right: 150px;
+}

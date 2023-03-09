@@ -1,0 +1,51 @@
+/* This is doorbell's provitional icon */
+.bellsIcon {
+    
+}
+.bellUnfilled, .bellFilled {
+    width: 40px;
+    position: relative;
+    filter: invert(68%) sepia(76%) saturate(522%) hue-rotate(359deg) brightness(97%) contrast(94%); /* This change the SVG's color to #efb810 (yellow gold) */
+}
+.bellFilled {
+    transform: rotate(-47deg);
+}
+.bellUnfilled {
+    transform: rotate(13deg);
+    left: 19px;
+    top: 6px;
+}
+
+/* Nav Style */
+
+.navContainer {
+
+}
+.nav {
+    display: flex;
+    color: var(--whiteColor);
+    position: fixed;
+    top: 10px;
+    right: 10vw;
+    font-size: 18px;
+}
+.navLinks {
+    display: flex;
+    list-style: none;
+    margin-right: 20vw;
+}
+.navlink {
+    margin: 0 30px;
+}
+.navlogsign {
+    display: flex;
+}
+.navlogin, .navsignup {
+    padding: 10px 12px;
+    margin: 0 5px;
+    margin-top: 10px;
+}
+.navsignup {
+    background-color: var(--turquoiseColor);
+    height: 25px;
+}
