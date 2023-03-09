@@ -3,6 +3,7 @@ import Style from "../styles/Encuesta.module.css"
 import { useRef } from "react"
 import Logo1 from "../img/Logo1.svg"
 import Logo2 from "../img/Logo2.svg"
+import Image from "next/image"
 
 export default function Encuesta() {
 
@@ -33,7 +34,7 @@ export default function Encuesta() {
     name: "¿Cual es tu nombre?",
     age: "¿Cuantos años tienes?",
     contact: "Escribe tu numero de telefono o correo electronico",
-    color: ["¿Qué Color prefieres?", <ColorAnswer useRef={navBackground} handleInput={() => handleInput} />],
+    color: ["¿Qué Color prefieres?", <ColorAnswer key="colorAnswer" useRef={navBackground} handleInput={() => handleInput} />],
     institution: ["¿Para que tipo de institucion trabajas?", ["Educativa", "Cuidado de Salud", "Corporativa", "Governamental"]],
     challenges: "¿Cuales son algunos de los desafios diarios que enfrenta en la gestion de su institucion?",
     solutions: "¿Ha pensado en alguna solucion tecnologica en el pasado para resolver los problemas de su institucion? Si es así ¿Cuales fueron que tan exitosos fueron?",
@@ -44,7 +45,7 @@ export default function Encuesta() {
     usefull: "¿Consideras que este producto o servicio satisface las necesidades de las instituciones?",
     alternatives: "¿Qué alternativas le ofrecemos, que lo lleve a experimentar con nuestro producto?",
     advices: "¿Que mejorarias de este producto?",
-    logo: ["¿Como te gustaria que fuese nuestro logo?", <LogoAnswer handleInput={() => handleInput} />],
+    logo: ["¿Como te gustaria que fuese nuestro logo?", <LogoAnswer key="LogoAnswer" handleInput={() => handleInput} />],
     value: ["¿Cuales de los siguientes valores crees que le queda mejor a nuestra empresa?", ["Transparencia","Compromiso","Diferencia","Claridad","Cordialidad"]],
     rate: ["Del 1 al 5 ¿Como calificarias nuestro servicio al producto?", [1,2,3,4,5]],
     innovation: "¿Crees que nuestro proyecto seria innovador a nivel departamental, nacional, internacional?"
@@ -115,7 +116,7 @@ function Card(props) {
             <h2>{question[0]}</h2>
             <div className={Style.AnswersCard}>
               {
-                question[1].map(ans => 
+                question[1].map(ans, key => 
                 <div className={Style.cardAns}>
 
                   <input 
@@ -124,7 +125,7 @@ function Card(props) {
                   name={question[0]} 
                   type="radio" 
                   onClick={() => {props.handleInput(props.qN[props.num], ans)}} 
-                  key={ans}></input>
+                  key={key}></input>
 
                   <label className={Style.cardRadioLabel} key={ans} htmlFor={ans} >{ans}</label>
 
@@ -167,13 +168,13 @@ function LogoAnswer(props) {
         <div>
           <input name="svg" id="svg1" type="radio" className={Style.svgRadio} />
           <label className={Style.radiolabelsvg} htmlFor="svg1">
-            <img onClick={() => props.handleInput("logo", "1")} src={Logo1.src} className={Style.svgLogo} />
+            <Image onClick={() => props.handleInput("logo", "1")} src={Logo1.src} className={Style.svgLogo} />
           </label>
         </div>
         <div>
           <input name="svg" id="svg2" type="radio" className={Style.svgRadio} />
           <label className={Style.radiolabelsvg} htmlFor="svg2">
-            <img onClick={() => props.handleInput("logo", "2")} src={Logo2.src} className={Style.svgLogo} />
+            <Image onClick={() => props.handleInput("logo", "2")} src={Logo2.src} className={Style.svgLogo} />
           </label>
         </div>
       </div>
