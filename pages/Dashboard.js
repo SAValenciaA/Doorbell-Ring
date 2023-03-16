@@ -20,6 +20,6 @@ export default function Dashboard({props}) {
     console.table(props)
   }, [])
   return (
-    <></>
+    <>{JSON.stringify(props)}</>
   )
 }

@@ -4,6 +4,7 @@ import { useRef } from "react"
 import Logo1 from "../img/Logo1.svg"
 import Logo2 from "../img/Logo2.svg"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Encuesta() {
 
@@ -156,7 +157,7 @@ function Card(props) {
       }
 
       <button style={{backgroundColor: props.data.color}} className={Style.ButtonCard} onClick={props.handleBack}>Regresar</button>
-      <button style={{backgroundColor: props.data.color}}  className={Style.ButtonCard} onClick={() => handler()}>{props.num < 17 ? "Siguiente": <a href="/">Enviar</a>}</button>
+      <button style={{backgroundColor: props.data.color}}  className={Style.ButtonCard} onClick={() => handler()}>{props.num < 17 ? "Siguiente": <Link href="/">Enviar</Link>}</button>
     </div>
   )
 }
