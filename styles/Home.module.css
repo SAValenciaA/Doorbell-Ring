@@ -4,11 +4,12 @@
 }
 .landPageImg {
   width: 100vw;
+  height: auto;
   position: absolute;
   top: -200px;
   left: 0;
   z-index: -1;
-  filter:  brightness(90%);
+  filter:  brightness(25%);
 }
 .heroText {
   width: 41vw;
@@ -16,11 +17,9 @@
   min-width: 630px;
   position: absolute;
   left: 51%;
-  top: 200px;
-  background-color: var(--whiteColor);
+  top: 20vh;
   padding: 30px;  
-  color: var(--darkColor);
-  box-shadow: 20px -20px 0 0 var(--darkColor);
+  color: var(--whiteColor);
 }
 .heroParagraph {
   margin-top: 60px;
@@ -44,11 +43,167 @@
   color: var(--goldColor);
 }
 
-/* About Us Section Style */
+/* ----------------------- About Us Section Style ----------------------- */
+
 .aboutUsSection {
-  position: absolute;
   width: 100vw;
-  top: 100vh;
-  left: 0;
+  height: 80vh;
+  margin: 95vh 0 0 0;
+  color: var(--whiteColor);
+  background: linear-gradient(90deg, rgba(21,19,20,1) 40%, rgba(207,202,189,1) 40%);
+  box-shadow: 0 0 30px 10px #000;
+  text-shadow: 0px 1px 10px #000;
+}
+.aboutUsSection * {
+  position: relative;
+  top: 100px;
+  left: 40px;
+}
+.aboutUsSection h2 {
+  font-size: 2.5em;
+  margin-top: 50px;
+  width: 400px;
+}
+.aboutUsSection p {
+  width: 550px;
+  font-size: 1.2em;
+  margin-top: 50px;
+}
+.decorativeAboutUs {
+  position: absolute;
+  top: 110vh;
+  left: 50vw;
+  width: 40vw;
+  height: auto;
+}
+.decorationFigure {
+  content: "";
+  position: absolute;
+  z-index: 0;
+}
+.decorationFigure:nth-of-type(1) {
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  border: 15px solid var(--darkColor);
+  top: 101vh;
+  left: 46vw;
+  z-index: 1;
+}
+.decorationFigure:nth-of-type(2)  {
+  height: 400px;
+  width: 20px;
+  background-color: var(--darkColor);
+  top: 95vh;
+  left: 87vw;
+}
+.decorationFigure:nth-of-type(3)  {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  background-color: var(--darkColor);
+  top: 151vh;
+  left: 95vw;
+}
+.decorationFigure:nth-of-type(4)  {
+
+}
+.decorationFigure:nth-of-type(5)  {
+
+}
+
+/* Our Service Section */
+
+.ourServiceSection {
+  width: 660px;
+  height: 660px;
+  color: var(--darkColor);
   background-color: var(--whiteColor);
+  border-radius: 50%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  margin: 100px;
+  position: relative;
+  z-index: 3;
+}
+.ourServiceSection h2 {
+  font-size: 2em;
+  position: relative;
+  top: -50px;
+}
+.ourServiceSection p {
+  font-size: 1.2em;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Contact Us Section */
+
+.ContactUs {
+  background-color: var(--whiteColor);
+  width: fit-content;
+  padding: 40px;
+  padding-left: 500px ;
+  position: absolute;
+  right: 120px;
+  margin-top: -710px;
+}
+.ContactUs::before  {
+  content: "";
+  display: block;
+  width: 660px;
+  height: 660px;
+  background-color: var(--darkColor);
+  border-radius: 50%;
+  position: absolute;
+  left: -330px;
+  margin-top: -80px;
+  z-index: 2;
+}
+.ContactUs h2 {
+  font-size: 2em;
+}
+.ContactUsInputs * {
+  display: block;
+  position: relative;
+}
+.ContactUsInputs input {
+  width: 500px;
+  height: 10px;
+  margin: 20px auto;
+  font-size: 14px;
+  resize: none;
+  border: none;
+  color: var(--darkColor);
+  padding: 20px;
+  background-color: transparent;
+  border-bottom: 3px solid var(--darkColor);
+  transition-duration: 0.7s;
+}
+.ContactUsInputs input:focus, .ContactUsInputs input:focus-visible {
+  outline: none;
+  border-bottom: 3px solid var(--turquoiseColor);
+}
+.ContactUsInputs textarea {
+  width: 500px;
+  height: 150px;
+  margin: 20px auto;
+  font-size: 12px;
+  resize: none;
+  border: none;
+  background-color: var(--darkColor);
+  color: var(--whiteColor);
+  padding: 20px;
+}
+.ContactUsSubmit {
+  background-color: var(--turquoiseColor);
+  color: var(--whiteColor);
+  border: none;
+  padding: 12px;
+  font-size: 17px;
+  cursor: pointer;
 }

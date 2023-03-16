@@ -16,3 +16,14 @@ a {
   text-decoration: none;
   color: var(--whiteColor);
 }
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+.boton {
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  font-size: 25px;
+  width: 800px;
+}

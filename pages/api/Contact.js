@@ -8,7 +8,7 @@ export default async (req, res) => {
     }
     const info = JSON.parse(req.body)
 
-    const savedinfo = await prisma.answer.create( {
+    const savedinfo = await prisma.contacts.create( {
         data: info
     })
 }

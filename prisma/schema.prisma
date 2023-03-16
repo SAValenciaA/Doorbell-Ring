@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./db/database.db"
 }
 
 model Answer {
@@ -29,4 +29,10 @@ model Answer {
   value        String
   rate         Int
   innovation   String
+}
+
+model contacts {
+  name  String
+  email String @id
+  text  String
 }

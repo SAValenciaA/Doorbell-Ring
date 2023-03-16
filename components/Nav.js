@@ -1,28 +1,28 @@
-import navStyles from '../styles/Nav.module.css'
+import Style from '../styles/Layout.module.css'
 import BellIcon from '../components/BellIcon'
 import Link from 'next/link'
 
 export default function Nav() {
   return (
-    <nav className={navStyles.nav}>
+    <nav className={Style.nav}>
         <BellIcon />
-        <ul className={navStyles.navLinks}>
-            <li className={navStyles.navlink}>
+        <ul className={Style.navLinks}>
+            <li className={Style.navlink}>
                 <Link href="/">Inicio</Link>
             </li>
-            <li className={navStyles.navlink}>
+            <li className={Style.navlink}>
                 Redes Sociales
             </li>
-            <li className={navStyles.navlink}>
+            <li className={Style.navlink}>
                 <Link href="/Precios">Precios</Link>
             </li>
-            <li className={navStyles.navlink}>
+            <li className={Style.navlink}>
                 <Link href="/Encuesta">Encuesta</Link>
             </li>
         </ul>
-        <div className={navStyles.navlogsign}>
-            <div className={navStyles.navlogin}>Login</div>
-            <div className={navStyles.navsignup}>Sign Up</div>
+        <div className={Style.navlogsign}>
+            <div className={Style.navlogin}>Login</div>
+            <div className={Style.navsignup}>Sign Up</div>
         </div>
     </nav>
   )

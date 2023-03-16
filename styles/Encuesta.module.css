@@ -67,7 +67,7 @@
     padding: 12px;
     justify-content: center;
     transition: 0.2s;
-    box-shadow: 0 0 13px 5px #000 inset;
+    box-shadow: 0 0 20px 1px #000 inset;
     font-size: 18px;
     appearance: none;
     border: none;
@@ -81,8 +81,10 @@
 }
 .cardInputRadio:checked + .cardRadioLabel, .cardRadioLabel:hover {
     background-color: var(--goldColor);
-    transform: scale(1.07);
     cursor: pointer;
+}
+.cardInputRadio:checked + .cardRadioLabel {
+    transform: scale(1.07);
 }
 .colorAnsBrown, .colorAnsTurquoise,.colorAnsDark, .colorAnsYellow {
     border-radius: 50%;
@@ -113,6 +115,7 @@
 }
 .svgLogo {
     width: 200px ;
+    height: auto;
     padding: 20px;
     transition: 0.2s;
 }
@@ -132,7 +135,6 @@
 .ButtonCard {
     position: absolute;
     top: 490px;
-    background-color: var(--turquoiseColor);
     color: var(--whiteColor);
     border: none;
     padding: 15px;
@@ -145,4 +147,40 @@
 }
 .ButtonCard:last-of-type {
     right: 150px;
+}
+
+@media (max-width: 600px) {
+    .QuestionCard {
+        width: 80vw;
+        height: fit-content;
+        top: 100px;
+    }
+    .smallInputQuestion {
+        width: 80%;
+        height: 20px;
+        margin-bottom: 150px;
+    }
+    .bigInputQuestion {
+        width: 70vw;
+        height: 150px;
+    }
+    .ButtonCard:first-of-type {
+        left: 20px
+    }
+    .ButtonCard:last-of-type {
+        right: 20px;
+    }
+    .cardRadioLabel {
+        width: 80px;
+        height: 40px;
+        font-size: 15px;
+        position: relative;
+        top: -70px;
+    }
+    .AnswersCard {
+        margin: 100px 0 0 0;
+    }
+    .svgLogo {
+        width: 120px;
+    }
 }

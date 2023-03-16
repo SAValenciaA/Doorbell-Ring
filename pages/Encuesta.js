@@ -13,7 +13,7 @@ export default function Encuesta() {
     name: "",
     age: "",
     contact: "",
-    color: "",
+    color: "#006e61",
     institution: "",
     challenges: "",
     solutions: "",
@@ -29,15 +29,22 @@ export default function Encuesta() {
     rate: 0,
     innovation: ""
   })
+  
+  const handleInput = (key, value) => {
+    let newData = data
+    newData[key] = value
+    setData(newData)
+    console.log(data)
+  }
 
   const questions = {
     name: "¿Cual es tu nombre?",
     age: "¿Cuantos años tienes?",
     contact: "Escribe tu numero de telefono o correo electronico",
-    color: ["¿Qué Color prefieres?", <ColorAnswer key="colorAnswer" useRef={navBackground} handleInput={() => handleInput} />],
+    color: ["¿Qué Color prefieres?", <ColorAnswer key="colorAnswer" handleInput={handleInput} />],
     institution: ["¿Para que tipo de institucion trabajas?", ["Educativa", "Cuidado de Salud", "Corporativa", "Governamental"]],
     challenges: "¿Cuales son algunos de los desafios diarios que enfrenta en la gestion de su institucion?",
-    solutions: "¿Ha pensado en alguna solucion tecnologica en el pasado para resolver los problemas de su institucion? Si es así ¿Cuales fueron que tan exitosos fueron?",
+    solutions: "¿Ha pensado en alguna solucion tecnologica en el pasado para resolver los problemas de su institucion?",
     frequency: ["¿Que tanto se ha encontrado con problemas en sus horarios?", ["Ninguna vez", "Casi Nunca", "Alguna vez", "Muy seguido", "Diario"]],
     importance: ["¿Que importancia le da a la personalizacion en los productos y servicios que utiliza para su institucion?", ["Muy necesario", "Necesario", "No Muy Necesario", "Nada Necesario"]],
     feature: "¿Que caracteristicas le gustaria ver en un software que prediga la mejor manera de crear horarios para su institucion?",
@@ -54,21 +61,14 @@ export default function Encuesta() {
   const questionsName = Object.keys(questions)
 
   const [questionNumber, setQuestionNumber] = useState(0);
-
-  const dataChange = (key, value) => {
-  }
   
-  const handleInput = (key, value) => {
-    let newData = data
-    newData[key] = value
-    setData(newData)
-  }
 
   const handleFetch = async () => {
     const res = await fetch('/api/Send', {
       method:'POST',
       body: JSON.stringify(data)
     })
+    window.location.reload(true)
   }
 
   const handleNext = () => {
@@ -77,6 +77,7 @@ export default function Encuesta() {
     } else {
       handleFetch()
     }
+    console.log(questionsName)
   }
 
   return (
@@ -86,9 +87,11 @@ export default function Encuesta() {
         num={questionNumber} 
         q={questions} 
         qN={questionsName}
-        handleNext={() => handleNext} 
+        handleNext={() => handleNext()} 
         handleBack={() => {setQuestionNumber(questionNumber != 0 ? (questionNumber - 1) : questionNumber)}} 
-        handleInput={handleInput}/>
+        handleInput={handleInput}
+        data={data}
+        />
 
     </div>
   )
@@ -101,31 +104,43 @@ function Card(props) {
 
   const smallQuestions = ["name","age","contact"]
 
+  const inputRef = useRef()
+
+  const handler = () => {
+    if(typeof(question) != "object") {
+      inputRef.current.value = ""
+    }
+    props.handleNext()
+  }
+
   return (
     <div className={Style.QuestionCard}>
       <h4>Pregunta #{props.num + 1}</h4>
       {typeof(question) != "object" ? 
       <>
         <h2>{question}</h2>
-        <textarea 
+        <textarea
           className={smallQuestions.includes(props.qN[props.num]) ? Style.smallInputQuestion : Style.bigInputQuestion}
-          onChange={(e) => props.handleInput(props.qN[props.num], e.target.value)}/>
+          onChange={(e) => props.handleInput(props.qN[props.num], e.target.value)}
+          ref={inputRef}
+          />
       </> :
         typeof question[1][Symbol.iterator] == "function" ? //Check if it's a list or a component
-          <>
+        <>
             <h2>{question[0]}</h2>
             <div className={Style.AnswersCard}>
               {
-                question[1].map(ans, key => 
-                <div className={Style.cardAns}>
+                question[1].map((ans, key) => 
+                <div key={key} className={Style.cardAns}>
 
-                  <input 
+                  <input
                   className={Style.cardInputRadio} 
                   id={ans}
                   name={question[0]} 
                   type="radio" 
-                  onClick={() => {props.handleInput(props.qN[props.num], ans)}} 
-                  key={key}></input>
+                  onChange={(e) => props.handleInput(props.qN[props.num], ans)}
+                  key={key}
+                   />
 
                   <label className={Style.cardRadioLabel} key={ans} htmlFor={ans} >{ans}</label>
 
@@ -140,8 +155,8 @@ function Card(props) {
           </>
       }
 
-      <button className={Style.ButtonCard} onClick={props.handleBack}>Regresar</button>
-      <button className={Style.ButtonCard} onClick={props.handleNext()}>{props.num < 17 ? "Siguiente": "Enviar"}</button>
+      <button style={{backgroundColor: props.data.color}} className={Style.ButtonCard} onClick={props.handleBack}>Regresar</button>
+      <button style={{backgroundColor: props.data.color}}  className={Style.ButtonCard} onClick={() => handler()}>{props.num < 17 ? "Siguiente": <a href="/">Enviar</a>}</button>
     </div>
   )
 }
@@ -149,14 +164,13 @@ function Card(props) {
 function ColorAnswer(props) {
   const colorChoose = (color) => {
     props.handleInput("color", color)
-    console.log(props.useRef.target)
   }
   return(
     <div className={Style.AnswersCard}>
-      <input name="color" type="radio" onClick={() => colorChoose("brown")} className={`${Style.colorAnsBrown} ${Style.cardAns}`}></input>
-      <input name="color" type="radio" onClick={() => colorChoose("Turquoise")} className={`${Style.colorAnsTurquoise} ${Style.cardAns}`}></input>
-      <input name="color" type="radio" onClick={() => colorChoose("Dark")} className={`${Style.colorAnsDark} ${Style.cardAns}`}></input>
-      <input name="color" type="radio" onClick={() => colorChoose("Yellow")} className={`${Style.colorAnsYellow} ${Style.cardAns}`}></input>
+      <input name="color" type="radio" onClick={() => colorChoose("#4c2900")} className={`${Style.colorAnsBrown} ${Style.cardAns}`}></input>
+      <input name="color" type="radio" onClick={() => colorChoose("#006e61")} className={`${Style.colorAnsTurquoise} ${Style.cardAns}`}></input>
+      <input name="color" type="radio" onClick={() => colorChoose("#151314")} className={`${Style.colorAnsDark} ${Style.cardAns}`}></input>
+      <input name="color" type="radio" onClick={() => colorChoose("#efb810")} className={`${Style.colorAnsYellow} ${Style.cardAns}`}></input>
     </div>
   )
 }
@@ -168,13 +182,27 @@ function LogoAnswer(props) {
         <div>
           <input name="svg" id="svg1" type="radio" className={Style.svgRadio} />
           <label className={Style.radiolabelsvg} htmlFor="svg1">
-            <Image onClick={() => props.handleInput("logo", "1")} src={Logo1.src} className={Style.svgLogo} />
+            <Image 
+              onClick={() => props.handleInput("logo", "1")} 
+              src={Logo1.src} 
+              className={Style.svgLogo} 
+              alt="First Logo DoorbellRing"
+              width={Logo1.width}
+              height={Logo1.height}
+               />
           </label>
         </div>
         <div>
           <input name="svg" id="svg2" type="radio" className={Style.svgRadio} />
           <label className={Style.radiolabelsvg} htmlFor="svg2">
-            <Image onClick={() => props.handleInput("logo", "2")} src={Logo2.src} className={Style.svgLogo} />
+            <Image 
+              onClick={() => props.handleInput("logo", "2")} 
+              src={Logo2.src} 
+              className={Style.svgLogo} 
+              alt="Second Logo DoorbellRing"
+              width={Logo2.width}
+              height={Logo2.height}
+              />
           </label>
         </div>
       </div>
