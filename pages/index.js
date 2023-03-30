@@ -33,7 +33,6 @@ function Home() {
       method:'POST',
       body: JSON.stringify(contact)
     })
-    window.location.reload(true)
   }
 
   useEffect(() => {

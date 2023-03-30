@@ -3,20 +3,22 @@
 .landPageImgContiner {
 }
 .landPageImg {
+  max-width: 1900px;
+  min-width: 1600px;
   width: 100vw;
   height: auto;
   position: absolute;
   top: -200px;
   left: 0;
   z-index: -1;
-  filter:  brightness(25%);
+  filter:  brightness(19%);
 }
 .heroText {
   width: 41vw;
   max-width: 750px;
   min-width: 630px;
   position: absolute;
-  left: 51%;
+  right: 100px;
   top: 20vh;
   padding: 30px;  
   color: var(--whiteColor);
@@ -41,6 +43,7 @@
 }
 .ringText {
   color: var(--goldColor);
+  text-shadow: 0 0 20px #151314cc;
 }
 
 /* ----------------------- About Us Section Style ----------------------- */
@@ -206,4 +209,11 @@
   padding: 12px;
   font-size: 17px;
   cursor: pointer;
+}
+@media (max-width: 1300px) {
+  .heroText {
+    background-color: #fffae9bb;
+    color: var(--darkColor);
+
+  }
 }

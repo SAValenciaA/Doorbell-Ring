@@ -5,8 +5,10 @@ import Link from 'next/link'
 export default function Nav() {
   return (
     <nav className={Style.nav}>
-        <BellIcon />
         <ul className={Style.navLinks}>
+            <li>
+                <BellIcon />    
+            </li>
             <li className={Style.navlink}>
                 <Link href="/">Inicio</Link>
             </li>
